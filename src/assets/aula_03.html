@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Frase: <input id="input_frase" type="text"> <br>
+    <button onclick="sobrescrever()">Sobrescrever Frase</button>
+    <button onclick="incrementar()">Incrementar Frase</button>
+    <div id="div_frase">
+        Este é o conteúdo (innerHTML) da div.
+    </div>
+    <!-- o id pode ser utilizado para manipular qualquer elemento HTML através do javascript -->
+</body>
+</html>
+
+<script>
+    /*
+        Ao manipular elementos HTML via JS, é NECESSÁRIO ter um identificador para o elemento
+        Para manipular seu conteúdo, devemos utilizar o atributo "innerHTML", que representa o HTML dentro daquela tag
+        O innerHTML pode ser usado para visualizar e para manipular o conteúdo da div.
+
+        Ao utilizar o comando:   alert(div_frase.innerHTML);
+        O alerta irá capturar o conteúdo interior que existe no elemento "div_frase" e exibí-lo
+
+        Ao utilizar o comando    div_frase.innerHTML = "abc";
+        O conteúdo interior da "div_frase" será reatribuído/sobrescrito com o valor do texto "abc", removendo o conteúdo anterior
+        
+        Ao utilizar o comando    div_frase.innerHTML += 'd';
+        O conteúdo interior da "div_frase" será incrementado/concatenado com o texto "d", mantendo seu valor anterior
+    */
+
+    function sobrescrever() {
+        var frase = input_frase.value;   // armazena o valor da input na variável
+        div_frase.innerHTML = `<p> ${frase} </p>`;   // interpolação
+        input_frase.value = "";   // limpa o valor da input
+        // div_frase.innerHTML = "<p>" + frase + "</p>";   // concatenação
+    }
+
+    function incrementar() {
+        var frase = input_frase.value;   // armazena o valor da input na variável
+        div_frase.innerHTML += `<p> ${frase} </p>`;   // interpolação
+        input_frase.value = "";   // limpa o valor da input
+        // div_frase.innerHTML += "<p>" + frase + "</p>";   // concatenação
+    }
+    
+    /*
+        Em JS, existem três formas de criação/manipulação de textos, como: 
+            'texto comum em aspas simples'
+            "texto comum em aspas duplas"
+            `texto comum em crase / acento grave`
+
+        Todos os exemplos acima representam textos, que serão tratados da mesma forma pelo JS.
+        Porém, a crase possui algumas características e funcionalidades adicionais em comparação aos outros tipos de texto.
+        Quando precisamos estruturar uma mensagem como "Olá, <nome do usuário>!", podemos juntar os valores de duas formas, sendo:
+
+            Concatenação: 
+                "Olá, "  +  input_nome.value  +  "!"    -> "Olá, Fulano!"
+
+            Interpolação (template strings): 
+                `Olá, ${input_nome.value}!`   -> "Olá, Fulano!"
+
+        O resultado dos dois comandos acima é exatamente o mesmo, o que muda é somente a sintaxe/estrutura do código.
+        Na concatenação, realizamos a junção dos textos utilizando: "trecho 1" + "trecho 2" + "trecho 3"...
+        Já na interpolação, delimitamos o texto inteiro com crases e colocamos os valores a serem INTERPOLADOS/substituídos dentro de ${}.
+            A sintaxe de ${} para interpolar valores funciona somente caso o texto seja englobado por CRASE
+            Ao utilizar " ${A} ", será exibido literalmente ${A} no texto ao invés de interpolar o valor de A, por usar ASPAS ao invés de CRASE 
+    */
+</script>
